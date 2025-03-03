@@ -4,5 +4,4 @@ mistralai
 beautifulsoup4
 requests
 numpy
-time
-functools
+
