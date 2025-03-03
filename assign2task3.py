@@ -7,7 +7,7 @@ import numpy as np
 from mistralai import Mistral, UserMessage
 from bs4 import BeautifulSoup
 import requests
-
+ 
 # API Key Setup
 API_KEY = "xjCgy80GBjYF4qDbKke2ZI98Q8jxoinY"
 
