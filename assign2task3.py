@@ -1,5 +1,7 @@
 
+import time
 import streamlit as st
+import functools
 import faiss
 import numpy as np
 from mistralai import Mistral, UserMessage
