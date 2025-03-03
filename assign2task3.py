@@ -9,17 +9,27 @@ import requests
 # API Key Setup
 API_KEY = "xjCgy80GBjYF4qDbKke2ZI98Q8jxoinY"
 
-def get_text_embedding(list_txt_chunks):
+@st.cache_data(show_spinner=False)  # Cache API responses
+def get_text_embedding_cached(list_txt_chunks):
+    time.sleep(1)  # Prevent rapid API calls
     client = Mistral(api_key=API_KEY)
     embeddings_batch_response = client.embeddings.create(model="mistral-embed", inputs=list_txt_chunks)
     return embeddings_batch_response.data
 
-def mistral_chat(user_message):
+def get_text_embedding(list_txt_chunks):
+    return get_text_embedding_cached(list_txt_chunks)
+
+@st.cache_data(show_spinner=False)
+def mistral_chat_cached(user_message):
+    time.sleep(1)  # Prevent rapid API calls
     client = Mistral(api_key=API_KEY)
     messages = [UserMessage(content=user_message)]
     chat_response = client.chat.complete(model="mistral-large-latest", messages=messages)
     return chat_response.choices[0].message.content
 
+def mistral_chat(user_message):
+    return mistral_chat_cached(user_message)
+    
 def load_policy_data(url):
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
