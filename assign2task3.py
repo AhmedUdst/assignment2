@@ -13,7 +13,7 @@ API_KEY = "xjCgy80GBjYF4qDbKke2ZI98Q8jxoinY"
 
 @st.cache_data(show_spinner=False)  # Cache API responses
 def get_text_embedding_cached(list_txt_chunks):
-    time.sleep(1)  # Prevent rapid API calls
+    #time.sleep(1)  # Prevent rapid API calls
     client = Mistral(api_key=API_KEY)
     embeddings_batch_response = client.embeddings.create(model="mistral-embed", inputs=list_txt_chunks)
     return embeddings_batch_response.data
